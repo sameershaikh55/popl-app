@@ -45,6 +45,7 @@ Thumbs.db
 # Ignore server-specific files
 /server/node_modules/
 /server/.env
+/server/src/config/config.env
 
 # Ignore client-specific files
 /client/node_modules/
