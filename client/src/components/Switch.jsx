@@ -8,7 +8,6 @@ const ToggleSwitch = ({ content }) => {
   const dispatch = useDispatch();
 
   const toggleSwitch = () => {
-    console.log(content);
     dispatch(
       updateCardSocialUpdate(
         {

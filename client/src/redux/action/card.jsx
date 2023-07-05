@@ -119,6 +119,24 @@ export const updateCardVBColor = (updateData, id) => async (dispatch) => {
   }
 };
 
+export const updateCardCheckboxes = (updateData, id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_CARD_REQUEST });
+
+    const { data } = await axios.patch(`/api/card/vb/checkboxes/${id}`, updateData);
+
+    dispatch({
+      type: GET_CARD_SUCCESS,
+      payload: data.card,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_CARD_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 export const updateCardSocial = (updateData, id) => async (dispatch) => {
   try {
     dispatch({ type: GET_CARD_REQUEST });

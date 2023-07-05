@@ -5,7 +5,7 @@ import {
   Route,
   // useRoutes,
 } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "./redux/action/auth";
 
 // CUSTOMR ROUTES

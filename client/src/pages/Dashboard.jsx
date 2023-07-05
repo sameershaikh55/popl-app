@@ -25,9 +25,7 @@ const Dashboard = () => {
   const { cards, error, loading } = useSelector((state) => state.card);
 
   useEffect(() => {
-    if (!cards.length) {
-      dispatch(allCards());
-    }
+    dispatch(allCards());
   }, []);
 
   useEffect(() => {
@@ -81,7 +79,15 @@ const Dashboard = () => {
                         return (
                           <div key={i} className="col-4 h-100">
                             <div className="card_container w-100 h-100">
-                              <img className="bg w-100" src={card_bg} alt="" />
+                              <img
+                                className="bg w-100"
+                                src={
+                                  (content.coverDP &&
+                                    pictureURL + content.coverDP) ||
+                                    card_bg
+                                }
+                                alt=""
+                              />
                               <div className="card_body d-flex flex-column align-items-center">
                                 <div className="card_pic">
                                   <img

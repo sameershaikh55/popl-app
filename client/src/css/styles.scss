@@ -706,6 +706,7 @@ input[type="date"] {
       .bg {
         border-radius: inherit;
         max-height: 120px;
+        object-fit: cover;
       }
 
       .card_pic {
@@ -1075,7 +1076,7 @@ input[type="date"] {
     &:hover {
       background-color: #f7f7f7;
     }
-    
+
     .icon {
       min-width: 25px;
 
@@ -1175,15 +1176,20 @@ input[type="date"] {
     margin-left: auto;
     margin-right: auto;
 
-    p {
+    .left_side {
       position: absolute;
       left: 10px;
       top: 10px;
-      background: #fff;
-      border-radius: 5px;
-      padding: 2px 8px;
-      font-size: 10px;
-      font-weight: 600;
+
+      p {
+        span {
+          background: #fff;
+          padding: 2px 8px;
+          border-radius: 5px;
+          font-size: 10px;
+          font-weight: 600;
+        }
+      }
     }
 
     svg {
@@ -1205,6 +1211,24 @@ input[type="date"] {
       min-width: 320px;
       margin-left: auto;
       margin-right: auto;
+    }
+  }
+
+  .VM_condense {
+    svg {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 70px;
+      height: 70px;
+      background: #fff;
+      padding: 5px;
+    }
+
+    .left_side {
+      position: absolute;
+      left: 22px;
+      top: 22px;
     }
   }
 

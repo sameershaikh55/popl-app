@@ -10,66 +10,19 @@ import {
   getCard,
   updateCardPicture,
   updateCardVBColor,
+  updateCardCheckboxes,
 } from "../../redux/action/card";
 import VMPreview from "../../components/VMPreview";
+import { urls } from "../../constant/virtualBackground/backgrounds";
+import { colorBoxes } from "../../constant/virtualBackground/colorBoxes";
+import { checkboxes } from "../../constant/virtualBackground/checkboxes";
+import Checkbox from "../../components/Checkbox";
 
 const VirtualBackground = () => {
   const pictureURL = process.env.REACT_APP_PICTURE_URL_2;
   const { id } = useParams();
   const dispatch = useDispatch();
   const alert = useAlert();
-
-  const urls = [
-    "https://images.unsplash.com/photo-1543248939-4296e1fea89b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHwxfHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1562664377-709f2c337eb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHwyfHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHwzfHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1566836610593-62a64888a216?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHw0fHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1531685250784-7569952593d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHw1fHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1515542706656-8e6ef17a1521?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHw2fHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1577017040065-650ee4d43339?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHw3fHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1493612276216-ee3925520721?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHw4fHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHw5fHx6b29tJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE2ODU5NTAyMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1538506392157-218c11f95129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHwxMHx8em9vbSUyMGJhY2tncm91bmR8ZW58MHx8fHwxNjg1OTUwMjE2fDA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1429198739803-7db875882052?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHwxMXx8em9vbSUyMGJhY2tncm91bmR8ZW58MHx8fHwxNjg1OTUwMjE2fDA&ixlib=rb-4.0.3&q=80&w=1080",
-    "https://images.unsplash.com/photo-1494059980473-813e73ee784b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjUwMDF8MHwxfHNlYXJjaHwxMnx8em9vbSUyMGJhY2tncm91bmR8ZW58MHx8fHwxNjg1OTUwMjE2fDA&ixlib=rb-4.0.3&q=80&w=1080",
-  ];
-  const colorBoxes = [
-    {
-      backgroundColor: "rgb(0, 0, 0)",
-      border: "1px solid rgb(255, 255, 255)",
-      code: "#000000",
-    },
-    {
-      backgroundColor: "rgb(235, 87, 87)",
-      border: "1px solid rgb(255, 255, 255)",
-      code: "#EB5757",
-    },
-    {
-      backgroundColor: "rgb(242, 153, 74)",
-      border: "1px solid rgb(255, 255, 255)",
-      code: "#F2994A",
-    },
-    {
-      backgroundColor: "rgb(242, 201, 76)",
-      border: "1px solid rgb(255, 255, 255)",
-      code: "#F2C94C",
-    },
-    {
-      backgroundColor: "rgb(33, 150, 83)",
-      border: "1px solid rgb(255, 255, 255)",
-      code: "#219653",
-    },
-    {
-      backgroundColor: "rgb(47, 128, 237)",
-      border: "1px solid rgb(255, 255, 255)",
-      code: "#2F80ED",
-    },
-    {
-      backgroundColor: "rgb(155, 81, 224)",
-      border: "1px solid rgb(255, 255, 255)",
-      code: "#9B51E0",
-    },
-  ];
 
   const [imgSwitch, setImgSwitch] = useState(false);
   const [selectedPic, setSelectedPic] = useState(urls[0]);
@@ -117,6 +70,14 @@ const VirtualBackground = () => {
     const formData = new FormData();
     formData.append("picture", e.target.files[0]);
     dispatch(updateCardPicture(formData, "VBPicture", id));
+  };
+
+  const handleCheckboxChange = (e) => {
+    const formData = {
+      [e.target.name]: e.target.checked,
+    };
+
+    dispatch(updateCardCheckboxes(formData, id));
   };
 
   // const submit = (e) => {
@@ -209,6 +170,37 @@ const VirtualBackground = () => {
                 ))}
               </div>
             </div>
+          </div>
+          <div className="virtual_checkboxes row gy-3">
+            {checkboxes.map((content, index) => {
+              const { title, lightText, label } = content;
+
+              return (
+                <div
+                  className={`${
+                    (lightText && "col-12") || "col-6"
+                  } d-flex align-items-center`}
+                  key={index}
+                >
+                  <div>
+                    <Checkbox
+                      value={
+                        Object.keys(card).length
+                          ? card.virtualBackground?.hasOwnProperty(label) &&
+                            card.virtualBackground[label]
+                          : ""
+                      }
+                      handleChange={handleCheckboxChange}
+                      label={label}
+                    />
+                  </div>
+                  <div>
+                    <p className="f12 fw500">{title}</p>
+                    {lightText && <p className="f10 opacity-50">{lightText}</p>}
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="lib-image-container d-flex gap-2">
             <button

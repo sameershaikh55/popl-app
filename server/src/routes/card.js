@@ -29,6 +29,7 @@ const {
   updateVirtualBackgroundData,
   updateSocialData,
   updateSocialDataSwitch,
+  updateVirtualBackgroundCheckboxes,
 } = require("../controller/card");
 
 // ROUTES
@@ -53,6 +54,9 @@ router
 router
   .route("/vb/color/:id")
   .patch(authentication, updateVirtualBackgroundData);
+router
+  .route("/vb/checkboxes/:id")
+  .patch(authentication, updateVirtualBackgroundCheckboxes);
 
 // SIGNATURE
 router

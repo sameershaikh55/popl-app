@@ -4,12 +4,13 @@ const Checkbox = ({ label, value, handleChange }) => {
   return (
     <div className="checkbox__wrapper">
       <label className="checkbox">
-        <span className="label">{label}</span>
+        <span className="label"></span>
         <input
           type="checkbox"
           className="checkbox__input"
           checked={value}
           onChange={handleChange}
+          name={label}
         />
         <span className="checkbox__check">
           <svg xmlns="http://www.w3.org/2000/svg" className="checkbox__svg">

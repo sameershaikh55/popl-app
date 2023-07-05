@@ -25,10 +25,8 @@ const Content = () => {
   const { card, error, loading } = useSelector((state) => state.card);
 
   useEffect(() => {
-    if (!Object.keys(card).length) {
-      dispatch(getCard(id));
-    }
-  }, [id]);
+    dispatch(getCard(id));
+  }, []);
 
   useEffect(() => {
     if (error) {

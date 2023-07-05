@@ -107,6 +107,30 @@ const cardsSchema = new Schema({
       trim: true,
       default: "",
     },
+    showPopCodeInTheOverlay: {
+      type: Boolean,
+      default: true,
+    },
+    condensedView: {
+      type: Boolean,
+      default: false,
+    },
+    name: {
+      type: Boolean,
+      default: true,
+    },
+    company: {
+      type: Boolean,
+      default: false,
+    },
+    jobTitle: {
+      type: Boolean,
+      default: false,
+    },
+    location: {
+      type: Boolean,
+      default: false,
+    },
   },
   social: [
     {

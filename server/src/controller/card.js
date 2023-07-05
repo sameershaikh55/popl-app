@@ -115,6 +115,23 @@ exports.updateVirtualBackgroundData = catchAsyncErrors(
 );
 
 // UPDATE VB DATA
+exports.updateVirtualBackgroundCheckboxes = catchAsyncErrors(
+  async (req, res, next) => {
+    const card = await CardModel.findById(req.params.id);
+
+    // Iterate through the labels in the request body
+    for (const label of Object.keys(req.body)) {
+      card.virtualBackground[label] = req.body[label];
+    }
+
+    // Save the updated card
+    await card.save();
+
+    sendResponse(true, 200, "card", card, res);
+  }
+);
+
+// UPDATE VB DATA
 exports.updateSocialData = catchAsyncErrors(async (req, res, next) => {
   const card = await CardModel.findById(req.params.id);
   const data = {

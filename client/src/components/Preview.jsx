@@ -107,13 +107,15 @@ const Preview = ({ noLink, about }) => {
           <p className="text-center f10 opacity-75">
             {card.jobTitle} at {card.company}
           </p>
+          <p className="text-center f8 opacity-75">
+            {card.bio}
+          </p>
           {/* <div className="d-flex justify-content-center mt-4">
             <button className="save_contact">Save Contact</button>
           </div> */}
-          <br />
           <div
             style={{ minWidth: "250px" }}
-            className="preview-socials row gy-2 px-4"
+            className="preview-socials row gy-2 px-4 mt-1"
           >
             {"social" in card &&
               card.social.map((content, i) => {
